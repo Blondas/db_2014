@@ -10,5 +10,5 @@ package dao;
  * @author Krystian
  */
 public class Tescik {
-    
+    ///fghjkl;
 }
