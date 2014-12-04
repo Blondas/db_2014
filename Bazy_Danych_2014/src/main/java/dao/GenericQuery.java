@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
  *
  * @author Krystian
  */
-public abstract class Zapytanie {
+public abstract class GenericQuery {
     private Transaction transaction = null;
     public Session session; 
     
