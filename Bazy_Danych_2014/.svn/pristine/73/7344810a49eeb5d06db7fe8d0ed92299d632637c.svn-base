@@ -32,6 +32,15 @@ public class CategoriesDao extends GenericQuery{
     }
 //==============================================================================    
     public Categories selectCategoryByName(String name) {
+//        Categories categories = null;
+//        beginTransaction();
+//        String queryString = "from Categories where categoryName = :name";
+//        Query query = getSession().createQuery(queryString);
+//        query.setString("name", name);
+//        categories = (Categories) query.uniqueResult();
+//        endTransaction();
+//        return categories;
+        
         Categories categories = null;
         beginTransaction();
         String queryString = "from Categories where categoryName = :name";
@@ -51,7 +60,7 @@ public class CategoriesDao extends GenericQuery{
 //==============================================================================        
     public void deleteCategoriesByName(String name) {
         beginTransaction();
-        ArrayList<Categories> categories = (ArrayList) getSession().createCriteria(Categories.class)
+        ArrayList<Categories> categories = (ArrayList) session.createCriteria(Categories.class)
                     .add(Restrictions.eq("categoryName", name)).list();
         for(Categories c : categories){
             getSession().delete(c);
@@ -59,10 +68,61 @@ public class CategoriesDao extends GenericQuery{
         endTransaction();
     }
 //==============================================================================        
-    public void updatetCategory(Categories category) {
+    public void updatetCategory(Categories category, String categoryToUpdate) {
+//        beginTransaction();
+//        session.update(categories);
+//        endTransaction();
+        
         beginTransaction();
-        getSession().update(category);
+        
+        
+        String queryString = "from Categories where categoryName = :name";
+        Query query = getSession().createQuery(queryString);
+        query.setString("name", categoryToUpdate);
+        ArrayList<Categories> c = (ArrayList) query.list().get(0);
+        session.update(user);
+        
+        
+        
+        
+//        Query q = getSession().createQuery("from Categories where categoryName= :categoryToUpdate");
+//        q.setString("categoryToUpdate", categoryToUpdate);
+//        
+//        Categories result = (Categories)q.list().get(0);
+//        result.setCategoryName(category.getCategoryName());
+//        result.setDescription(category.getDescription());
+//        result.setPicture(category.getPicture());
+//        getSession().update(result);
+
         endTransaction();
+        
+//        ArrayList<Categories> categories = (ArrayList) session.createCriteria(Categories.class)
+//                    .add(Restrictions.eq("categoryName", categoryToUpdate)).list();
+//        for(Categories c : categories){
+//            getSession().update(c);
+//        }
+        
     }
-//==============================================================================
+//==============================================================================            
+//    public static void main(String[] args){
+//        CategoriesDao c = new CategoriesDao();
+////        c.test();
+////        c.deleteCategories(9);
+////        c.addCategory(null);
+////        c.updateCategories(null);
+//        ArrayList<Categories> lista = c.selectCategories();
+//        c.initTest(lista);
+//    }
+//
+//    
+//    public void initTest(ArrayList<Categories> lista){
+//        for(Categories c : lista){
+//            System.out.println(c);
+//        }
+//        
+//    }
+
+  
+    
+    
 }

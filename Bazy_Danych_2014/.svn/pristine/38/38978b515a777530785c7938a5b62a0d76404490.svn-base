@@ -47,9 +47,9 @@ public class CategoriesDaoJUnitTest {
         testAdd();
         testSelect();
         testUpdate();
-        testSelect();
-        testDelete();
-        testSelect();
+//        testSelect();
+//        testDelete();
+//        testSelect();
     }
 //==============================================================================    
     public void testSelect(){
@@ -89,12 +89,13 @@ public class CategoriesDaoJUnitTest {
     public void testUpdate(){
         System.out.println("------------------------------TESTING UPDATE------------------------------");
         Categories category = new Categories();
+        category.setCategoryName("CategoryName UPDATED");
         category.setDescription("Description UPDATED");
         category.setPicture("Picture UPDATED");
-        category.setCategoryId(2);
         
         CategoriesDao categoriesDao = new CategoriesDao();
-        categoriesDao.updatetCategory(category);
+        categoriesDao.updatetCategory(category, "Category Test");
+        
     }
 //==============================================================================   
 }

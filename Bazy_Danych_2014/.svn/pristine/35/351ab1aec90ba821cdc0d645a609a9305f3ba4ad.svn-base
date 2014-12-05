@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
  */
 public abstract class GenericQuery {
     private Transaction transaction = null;
-    private Session session; 
+    public Session session; 
     
 //==============================================================================
     public final void beginTransaction(){
