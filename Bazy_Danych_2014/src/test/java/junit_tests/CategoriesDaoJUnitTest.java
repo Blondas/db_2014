@@ -44,12 +44,12 @@ public class CategoriesDaoJUnitTest {
     @Test()
     public void testCategories(){
         testSelect();
-        testAdd();
-        testSelect();
-        testUpdate();
-        testSelect();
-        testDelete();
-        testSelect();
+//        testAdd();
+//        testSelect();
+//        testUpdate();
+//        testSelect();
+//        testDelete();
+//        testSelect();
     }
 //==============================================================================    
     public void testSelect(){
@@ -89,6 +89,7 @@ public class CategoriesDaoJUnitTest {
     public void testUpdate(){
         System.out.println("------------------------------TESTING UPDATE------------------------------");
         Categories category = new Categories();
+        category.setCategoryName("CATEGORY UPDATED");
         category.setDescription("Description UPDATED");
         category.setPicture("Picture UPDATED");
         category.setCategoryId(2);

@@ -10,8 +10,7 @@ public class OrderDetails  implements java.io.Serializable {
 
 
      private Integer odId;
-     private Integer orderId;
-     private Integer productId;
+     private Products product;
      private Float unitPrice;
      private Short quantity;
      private Float discount;
@@ -19,9 +18,8 @@ public class OrderDetails  implements java.io.Serializable {
     public OrderDetails() {
     }
 
-    public OrderDetails(Integer orderId, Integer productId, Float unitPrice, Short quantity, Float discount) {
-       this.orderId = orderId;
-       this.productId = productId;
+    public OrderDetails(Products product, Float unitPrice, Short quantity, Float discount) {
+       this.product = product;
        this.unitPrice = unitPrice;
        this.quantity = quantity;
        this.discount = discount;
@@ -34,19 +32,12 @@ public class OrderDetails  implements java.io.Serializable {
     public void setOdId(Integer odId) {
         this.odId = odId;
     }
-    public Integer getOrderId() {
-        return this.orderId;
+    public Products getProduct() {
+        return product;
     }
-    
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-    public Integer getProductId() {
-        return this.productId;
-    }
-    
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+
+    public void setProduct(Products product) {
+        this.product = product;
     }
     public Float getUnitPrice() {
         return this.unitPrice;

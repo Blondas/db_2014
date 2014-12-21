@@ -8,12 +8,17 @@
             <column name="OrderID" />
             <generator class="identity" />
         </id>
-        <property name="customerId" type="string">
-            <column name="CustomerID" length="5" />
-        </property>
-        <property name="employeeId" type="java.lang.Integer">
-            <column name="EmployeeID" />
-        </property>
+
+                
+        <list name="orderDetails">                              <!-- nazwa pola w orders--> 
+            <one-to-many name="OrderDetails" not-null="true"/>  <!-- nazwa klasy--> 
+        </list>
+        <many-to-one name="shipper" not-null="true"/>
+        <many-to-one name="emplyee" not-null="true"/>
+        <many-to-one name="customer" not-null="true"/>
+        
+        
+        
         <property name="orderDate" type="date">
             <column name="OrderDate" length="10" />
         </property>
@@ -22,9 +27,6 @@
         </property>
         <property name="shippedDate" type="date">
             <column name="ShippedDate" length="10" />
-        </property>
-        <property name="shipVia" type="java.lang.Integer">
-            <column name="ShipVia" />
         </property>
         <property name="freight" type="java.lang.Float">
             <column name="Freight" precision="1" scale="0" />

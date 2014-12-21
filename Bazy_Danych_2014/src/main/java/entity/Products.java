@@ -9,24 +9,24 @@ package entity;
 public class Products  implements java.io.Serializable {
 
 
-     private Integer productId;
-     private String productName;
-     private Integer supplierId;
-     private Integer categoryId;
-     private String quantityPerUnit;
-     private Float unitPrice;
-     private Short unitsInStock;
-     private Short unitsOnOrder;
-     private Short reorderLevel;
-     private Boolean discontinued;
+    private Categories category;
+    private Suppliers supplier;
+    private Integer productId;
+    private String productName;
+    private String quantityPerUnit;
+    private Float unitPrice;
+    private Short unitsInStock;
+    private Short unitsOnOrder;
+    private Short reorderLevel;
+    private Boolean discontinued;
 
     public Products() {
     }
 
-    public Products(String productName, Integer supplierId, Integer categoryId, String quantityPerUnit, Float unitPrice, Short unitsInStock, Short unitsOnOrder, Short reorderLevel, Boolean discontinued) {
+    public Products(String productName, Categories category, Suppliers supplier, String quantityPerUnit, Float unitPrice, Short unitsInStock, Short unitsOnOrder, Short reorderLevel, Boolean discontinued) {
        this.productName = productName;
-       this.supplierId = supplierId;
-       this.categoryId = categoryId;
+       this.category = category;
+       this.supplier = supplier;
        this.quantityPerUnit = quantityPerUnit;
        this.unitPrice = unitPrice;
        this.unitsInStock = unitsInStock;
@@ -49,24 +49,24 @@ public class Products  implements java.io.Serializable {
     public void setProductName(String productName) {
         this.productName = productName;
     }
-    public Integer getSupplierId() {
-        return this.supplierId;
-    }
     
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
+    public Categories getCategory() {
+        return category;
     }
-    public Integer getCategoryId() {
-        return this.categoryId;
+
+    public void setCategory(Categories category) {
+        this.category = category;
     }
-    
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public Suppliers getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Suppliers supplier) {
+        this.supplier = supplier;
     }
     public String getQuantityPerUnit() {
         return this.quantityPerUnit;
     }
-    
     public void setQuantityPerUnit(String quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
     }

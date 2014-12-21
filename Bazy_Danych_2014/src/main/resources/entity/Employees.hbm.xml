@@ -8,6 +8,9 @@
             <column name="EmployeeID" />
             <generator class="identity" />
         </id>
+        
+        <many-to-one name="reportsTo" not-null="false"/> 
+        
         <property name="lastName" type="string">
             <column name="LastName" length="20" />
         </property>

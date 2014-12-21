@@ -1,6 +1,9 @@
 package entity;
 // Generated 2014-10-18 21:27:43 by Hibernate Tools 4.3.1
 
+import java.util.List;
+
+
 
 
 /**
@@ -13,15 +16,26 @@ public class Categories  implements java.io.Serializable {
      private String categoryName;
      private String description;
      private String picture;
+     private List<Products> products;
 
     public Categories() {
     }
-
-    public Categories(String categoryName, String description, String picture) {
-       this.categoryName = categoryName;
-       this.description = description;
-       this.picture = picture;
+    public Categories(Integer categoryId, String categoryName, String description, String picture, List<Products> products) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.description = description;
+        this.picture = picture;
+        this.products = products;
     }
+
+    public List<Products> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Products> products) {
+        this.products = products;
+    }
+
    
     public Integer getCategoryId() {
         return this.categoryId;

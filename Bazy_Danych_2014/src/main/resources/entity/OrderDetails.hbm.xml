@@ -11,9 +11,10 @@
         <property name="orderId" type="java.lang.Integer">
             <column name="OrderID" />
         </property>
-        <property name="productId" type="java.lang.Integer">
-            <column name="ProductID" />
-        </property>
+        <many-to-one name="product"
+        not-null="true"
+        />
+        
         <property name="unitPrice" type="java.lang.Float">
             <column name="UnitPrice" precision="1" scale="0" />
         </property>
