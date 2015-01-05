@@ -8,6 +8,7 @@
             <column name="odID" />
             <generator class="identity" />
         </id>
+
         <property name="orderId" type="java.lang.Integer">
             <column name="OrderID" />
         </property>

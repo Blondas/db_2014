@@ -8,13 +8,16 @@
             <column name="OrderID" />
             <generator class="identity" />
         </id>
-
                 
-        <list name="orderDetails">                              <!-- nazwa pola w orders--> 
-            <one-to-many name="OrderDetails" not-null="true"/>  <!-- nazwa klasy--> 
-        </list>
+        <set name="orderDetails">
+            <key>
+                <column name="OrderID" />
+            </key>
+            <one-to-many class="entity.OrderDetails"/>
+        </set>
+
         <many-to-one name="shipper" not-null="true"/>
-        <many-to-one name="emplyee" not-null="true"/>
+        <many-to-one name="employee" not-null="true"/>
         <many-to-one name="customer" not-null="true"/>
         
         

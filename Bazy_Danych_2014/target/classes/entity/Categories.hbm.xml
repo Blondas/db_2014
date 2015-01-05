@@ -10,11 +10,13 @@
             <generator class="identity" />
         </id>
         
-        <list name="products" inverse="true">   <!-- name to nazwa pola w klasie(POJO)-->
-            <key column="categoryId"/>          <!-- key column to klucz glowny w tabeli(baza danych)-->
-            <one-to-many class="Products" />    <!-- Jedna kategoria ma wiele produktow mamy pole products ktore przechowuje klasy Products w relacji jeden do wielu -->
-        </list>                                 <!-- Uzywamy liste no bo jest wiecej produktow niz jeden -->
-        
+        <set name="products" inverse="true">
+            <key>
+                <column name="categoryId" />
+            </key>
+            <one-to-many class="entity.Products" />
+        </set>
+
         <property name="categoryName" type="string">
             <column name="CategoryName" length="15" />
         </property>
