@@ -56,8 +56,5 @@
         <property name="notes" type="string">
             <column name="Notes" length="65535" />
         </property>
-        <property name="reportsTo" type="java.lang.Integer">
-            <column name="ReportsTo" />
-        </property>
     </class>
 </hibernate-mapping>
