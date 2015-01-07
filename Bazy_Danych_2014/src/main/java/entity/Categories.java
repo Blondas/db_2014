@@ -3,12 +3,13 @@ import java.util.List;
 import java.util.Set;
 
 public class Categories  implements java.io.Serializable {
-
+    private Set<Products> products;
+    
      private Integer categoryId;
      private String categoryName;
      private String description;
      private String picture;
-     private Set<Products> products;
+     
 
      public Categories() {
      }
@@ -60,6 +61,13 @@ public class Categories  implements java.io.Serializable {
      public void setProducts(Set<Products> products) {
           this.products = products;
      }
+
+    @Override
+    public String toString() {
+        return "Categories{" + "products=" + products + ", categoryId=" + categoryId + ", categoryName=" + categoryName + ", description=" + description + ", picture=" + picture + '}';
+    }
+     
+     
 }
 
 

@@ -3,6 +3,7 @@ package entity;
 public class Products  implements java.io.Serializable {
     private Categories category;
     private Suppliers supplier;
+    
     private Integer productId;
     private String productName;
     private String quantityPerUnit;
@@ -12,6 +13,7 @@ public class Products  implements java.io.Serializable {
     private Short reorderLevel;
     private Boolean discontinued;
 
+    
     public Products() {
     }
 

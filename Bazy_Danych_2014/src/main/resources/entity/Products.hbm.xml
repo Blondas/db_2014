@@ -10,12 +10,15 @@
             <generator class="identity" />
         </id>
         
-        <many-to-one name="category" column="categoryId"
+        
+        <many-to-one name="category" column="categoryId" 
+        not-null="true"
+        />  <!-- name: pole w klasie; column: kolumna w tabeli -->
+        
+        <many-to-one name="supplier" column="supplierId"
         not-null="true"
         />
-        <many-to-one name="supplier"
-        not-null="true"
-        />
+        
         
         <property name="productName" type="string">
             <column name="ProductName" length="40" />

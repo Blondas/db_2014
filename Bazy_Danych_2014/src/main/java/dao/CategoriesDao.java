@@ -23,6 +23,8 @@ public class CategoriesDao extends GenericQuery{
         endTransaction();
     }
 //==============================================================================    
+  
+//==============================================================================    
     public ArrayList<Categories> selectCategories() {
         ArrayList<Categories> categories = null;
         beginTransaction();
@@ -37,6 +39,17 @@ public class CategoriesDao extends GenericQuery{
         String queryString = "from Categories where categoryName = :name";
         Query query = getSession().createQuery(queryString);
         query.setString("name", name);
+        categories = (Categories) query.list().get(0);
+        endTransaction();
+        return categories;
+    }
+//==============================================================================    
+    public Categories selectCategoryByid(int id) {
+        Categories categories = null;
+        beginTransaction();
+        String queryString = "from Categories where categoryId = :id";
+        Query query = getSession().createQuery(queryString);
+        query.setInteger("id", id);
         categories = (Categories) query.list().get(0);
         endTransaction();
         return categories;

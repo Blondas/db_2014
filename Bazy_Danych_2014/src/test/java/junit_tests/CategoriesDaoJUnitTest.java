@@ -52,6 +52,11 @@ public class CategoriesDaoJUnitTest {
 //        testSelect();
     }
 //==============================================================================    
+    public void testSelectFromDual(){
+        CategoriesDao categoriesDao = new CategoriesDao();
+        
+    }
+//==============================================================================    
     public void testSelect(){
         CategoriesDao categoriesDao = new CategoriesDao();
         ArrayList<Categories> categories = categoriesDao.selectCategories();

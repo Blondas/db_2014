@@ -10,10 +10,8 @@
             <generator class="identity" />
         </id>
         
-        <set name="products" inverse="true">
-            <key>
-                <column name="categoryId" />
-            </key>
+        <set name="products" inverse="true" lazy="false">   <!-- name: nazwa pola w klasie; inverse: chuj wie; column:  -->
+            <key column="categoryId" />
             <one-to-many class="entity.Products" />
         </set>
 
