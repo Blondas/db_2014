@@ -6,9 +6,7 @@
 package gui;
 
 import dao.CategoriesDao;
-import dao.SupplierDao;
 import entity.Categories;
-import entity.Suppliers;
 
 /**
  *
@@ -25,6 +23,7 @@ public class CategoriesFrame extends javax.swing.JFrame {
     }
     private void initGui(){
         setVisible(true);
+        setTitle("Dodaj kategorię");
     }
 
     /**

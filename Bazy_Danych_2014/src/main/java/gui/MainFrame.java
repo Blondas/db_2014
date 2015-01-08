@@ -16,6 +16,10 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        initGui();
+    }
+    private void initGui(){
+        setTitle("Okno główne");
     }
 
     /**
@@ -114,7 +118,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAddCategoryActionPerformed
 
     private void jButtonShowRaportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowRaportActionPerformed
-        // TODO add your handling code here:
+        new RaportFrame();
     }//GEN-LAST:event_jButtonShowRaportActionPerformed
 
     private void jButtonSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupplierActionPerformed
