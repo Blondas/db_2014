@@ -7,11 +7,16 @@ package junit_tests;
 
 import dao.CategoriesDao;
 import dao.ProductsDao;
+import dao.ReportsDao;
+import dao.ReportsDao;
 import dao.SupplierDao;
 import entity.Categories;
 import entity.Products;
 import entity.Suppliers;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,7 +56,7 @@ public class OtherTests {
 //    @Test
 //    public void test(){
 //
-//        
+//
 //        Suppliers supplier = new Suppliers();
 //        supplier.setAddress("dsadsadas");
 //        supplier.setCity("krak");
@@ -64,21 +69,21 @@ public class OtherTests {
 //        supplier.setPhone("phone");
 //        supplier.setPostalCode("postal");
 //        supplier.setRegion("reg");
-//        
+//
 //        SupplierDao supplierDao = new SupplierDao();
 //        supplierDao.addSupplier(supplier);
-//                
-//        
-//        Categories c = new Categories();       
+//
+//
+//        Categories c = new Categories();
 //        c.setCategoryName("Category Test");
 //        c.setDescription("Description Test");
 //        c.setPicture("Picture Test");
-//        
+//
 //        new CategoriesDao().addCategory(c);
-//        
-//        
+//
+//
 //        Products product = new Products();
-//        
+//
 //        product.setDiscontinued(Boolean.TRUE);
 //        product.setProductName("alaaaa");
 //        product.setQuantityPerUnit("1");
@@ -86,21 +91,28 @@ public class OtherTests {
 //        product.setUnitPrice(Float.MIN_VALUE);
 //        product.setUnitsInStock(Short.MIN_VALUE);
 //        product.setUnitsOnOrder(Short.MIN_VALUE);
-//                
-//        product.setSupplier(supplier);        
+//
+//        product.setSupplier(supplier);
 //        product.setCategory(c);
-//        
+//
 //        ProductsDao productsDao = new ProductsDao();
 //        productsDao.addProduct(product);
-//        
+//
 //    }
     
     @Test
     public void testSelectCategory() {
         CategoriesDao cDao = new CategoriesDao();
         Categories category = cDao.selectCategoryByid(10);
-        
-        System.out.println(category); 
+
+        System.out.println(category);
+    }
+
+    @Test
+    public void testRaport1() {
+        ReportsDao r = new ReportsDao();
+        List report = r.getProductsReport1("Beverages", "Exotic Liquids");
+        System.out.println(report);
     }
     
 }
