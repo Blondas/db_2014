@@ -26,5 +26,13 @@ public class SupplierDao extends GenericQuery{
         endTransaction();
     }
 //==============================================================================    
+    public ArrayList<Suppliers> selectSuppliers() {
+        ArrayList<Suppliers> suppliers = null;
+        beginTransaction();
+        suppliers = (ArrayList<Suppliers>) getSession().createQuery("from Suppliers").list();
+        endTransaction();
+        return suppliers;
+    }
+//==============================================================================    
 
 }
