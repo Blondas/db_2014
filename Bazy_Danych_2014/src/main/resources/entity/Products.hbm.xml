@@ -12,11 +12,11 @@
         
         
         <many-to-one name="category" column="categoryId" 
-        not-null="true"
+        not-null="true" lazy="false"
         />  <!-- name: pole w klasie; column: kolumna w tabeli -->
         
         <many-to-one name="supplier" column="supplierId"
-        not-null="true"
+        not-null="true" lazy="false"
         />
         
         

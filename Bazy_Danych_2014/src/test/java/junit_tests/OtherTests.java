@@ -5,19 +5,14 @@
  */
 package junit_tests;
 
-import dao.CategoriesDao;
-import dao.ProductsDao;
+import dao.*;
 import dao.ReportsDao;
-import dao.ReportsDao;
-import dao.SupplierDao;
 import entity.Categories;
 import entity.Products;
 import entity.Suppliers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -111,8 +106,26 @@ public class OtherTests {
     @Test
     public void testRaport1() {
         ReportsDao r = new ReportsDao();
-        List report = r.getProductsReport1("Beverages", "Exotic Liquids");
+        List<Products> report = r.getProductsReport1("Beverages", "Exotic Liquids");
+
+        System.out.println(report.get(0));
+//        System.out.println(report+"asdfasdfadsfasdfdsf");
+//        for (ProductShort o : report){
+//            System.out.println("AAAAAAAA"+o.getProductName());
+//            return;
+//        }
+
+/*
+List<Object> rows = criteria.list();
+for(Object r: rows){
+  Object[] row = (Object[]) r;
+  Type t = ((<Type>) row[0]);
+}
+ */
+//            List<Object> productsList = new ArrayList();
+//            productsList.add(p);
+//            System.out.println("AAAAAAAAAAA ");
+//        }
         System.out.println(report);
     }
-    
 }

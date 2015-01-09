@@ -46,11 +46,14 @@ public class CategoriesDao extends GenericQuery{
 //==============================================================================    
     public Categories selectCategoryByid(int id) {
         Categories categories = null;
+
         beginTransaction();
+
         String queryString = "from Categories where categoryId = :id";
         Query query = getSession().createQuery(queryString);
         query.setInteger("id", id);
         categories = (Categories) query.list().get(0);
+
         endTransaction();
         return categories;
     }

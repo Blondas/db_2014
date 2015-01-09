@@ -12,7 +12,9 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +23,11 @@ import java.util.List;
  *
  * @author Krystian
  */
-public class ReportsDao extends GenericQuery{
+public class ReportsDao extends GenericQuery {
 
-    public List getProductsReport1(String categoryName, String supplierName) {
-        String hqlQueryString = "select p.productName, p.quantityPerUnit, p.unitsInStock, p.discontinued, p.category.categoryName, " +
-                "p.supplier.supplierId from Products p";
+    public List <Products> getProductsReport1(String categoryName, String supplierName) {
+//        String hqlQueryString = "select p.productName, p.quantityPerUnit, p.unitsInStock, p.discontinued, p.category.categoryName, " +
+//                "p.supplier.supplierId from Products p";
 
         Products sampleProduct = new Products();
 
@@ -47,11 +49,17 @@ public class ReportsDao extends GenericQuery{
         criteria.add( Example.create(sampleProduct) );
         List result = criteria.list();
 
-        List results =  getSession().createQuery(hqlQueryString).list();
+//        List projectionCriteria = getSession().createCriteria(ProductShort.class)
+//                .setProjection(Projections.distinct(Projections.projectionList()
+//                .add(Projections.property("productName"), "productName")
+//                .add(Projections.property("supplier"), "supplier")))
+//                .setResultTransformer(Transformers.aliasToBean(ProductShort.class)).list();
+
+//        List result = getSession().createQuery(hqlQueryString).list();
 
         endTransaction();
 
-        return results;
+        return result;
     }
-}
 
+}

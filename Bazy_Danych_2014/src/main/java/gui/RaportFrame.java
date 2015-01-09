@@ -6,10 +6,13 @@
 package gui;
 
 import dao.CategoriesDao;
+import dao.ReportsDao;
 import dao.SupplierDao;
 import entity.Categories;
+import entity.Products;
 import entity.Suppliers;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -235,8 +238,13 @@ public class RaportFrame extends javax.swing.JFrame {
             model.removeRow(i);
         }
 
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "Column 4", "Column 5", "Column 6"});
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "Column 4", "Column 5", "Column 6"});
+        ReportsDao rDao= new ReportsDao();
+        List<Products> listP = rDao.getProductsReport1(categoryName, supplierName);
+        for (Products p: listP) {
+            model.addRow(new Object[]{p.getProductName(), p.getQuantityPerUnit(), p.getUnitsInStock(),
+                    p.getDiscontinued(), p.getCategory().getCategoryName(), p.getSupplier().getCompanyName()});
+        }
+
     }
 
 }
