@@ -6,10 +6,13 @@
 package gui;
 
 import dao.CategoriesDao;
+import dao.ReportsDao;
 import dao.SupplierDao;
 import entity.Categories;
+import entity.Products;
 import entity.Suppliers;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -227,16 +230,22 @@ public class RaportFrame extends javax.swing.JFrame {
         else if(jComboBoxSupplier.getSelectedIndex() != -1){ supplierName = (String) jComboBoxSupplier.getSelectedItem(); }
 
 
-
-
         DefaultTableModel model = (DefaultTableModel) jTableRaport.getModel();
 
         for(int i = 0; i< model.getRowCount(); i++){
             model.removeRow(i);
         }
+        
+        ReportsDao reportsDao = new ReportsDao();
+        List<Object> list = reportsDao.getProductsReport1(categoryName, supplierName);
+        
+        for(Object product :list){
+            Products p = (Products) product;
+            model.addRow(new Object[]{p.getProductName(),p.getQuantityPerUnit(), p.getUnitsInStock()
+                        , p.getDiscontinued(), p.getCategory().getCategoryName(), p.getSupplier().getCompanyName()});
+        }
+        
 
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "Column 4", "Column 5", "Column 6"});
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "Column 4", "Column 5", "Column 6"});
     }
 
 }

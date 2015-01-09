@@ -25,7 +25,7 @@ public class ReportsDao extends GenericQuery{
 
     public List getProductsReport1(String categoryName, String supplierName) {
         String hqlQueryString = "select p.productName, p.quantityPerUnit, p.unitsInStock, p.discontinued, p.category.categoryName, " +
-                "p.supplier.supplierId from Products p";
+                "p.supplier.companyName from Products p";
 
         Products sampleProduct = new Products();
 
@@ -45,7 +45,7 @@ public class ReportsDao extends GenericQuery{
 
         Criteria criteria = getSession().createCriteria(Products.class);
         criteria.add( Example.create(sampleProduct) );
-        List result = criteria.list();
+//        List result = criteria.list();
 
         List results =  getSession().createQuery(hqlQueryString).list();
 

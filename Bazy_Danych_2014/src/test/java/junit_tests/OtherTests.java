@@ -100,19 +100,21 @@ public class OtherTests {
 //
 //    }
     
-    @Test
-    public void testSelectCategory() {
-        CategoriesDao cDao = new CategoriesDao();
-        Categories category = cDao.selectCategoryByid(10);
-
-        System.out.println(category);
-    }
+//    @Test
+//    public void testSelectCategory() {
+//        CategoriesDao cDao = new CategoriesDao();
+//        Categories category = cDao.selectCategoryByid(10);
+//
+//        System.out.println(category);
+//    }
 
     @Test
     public void testRaport1() {
         ReportsDao r = new ReportsDao();
         List report = r.getProductsReport1("Beverages", "Exotic Liquids");
-        System.out.println(report);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(report.get(0));
+        System.out.println(((Products)report.get(0)).getProductName());
     }
     
 }
