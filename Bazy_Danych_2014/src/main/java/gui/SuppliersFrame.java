@@ -5,10 +5,7 @@
  */
 package gui;
 
-import dao.ProductsDao;
 import dao.SupplierDao;
-import entity.Categories;
-import entity.Products;
 import entity.Suppliers;
 
 /**
@@ -25,6 +22,7 @@ public class SuppliersFrame extends javax.swing.JFrame {
         initGui();
     }
     private void initGui(){
+        setTitle("Dodaj Dostawcę");
         setVisible(true);
     }
 

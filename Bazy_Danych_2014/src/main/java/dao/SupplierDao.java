@@ -5,12 +5,8 @@
  */
 package dao;
 
-import entity.Categories;
-import entity.Products;
 import entity.Suppliers;
 import java.util.ArrayList;
-import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *

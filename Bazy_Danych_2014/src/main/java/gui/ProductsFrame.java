@@ -12,10 +12,6 @@ import entity.Categories;
 import entity.Products;
 import entity.Suppliers;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,6 +31,7 @@ public class ProductsFrame extends javax.swing.JFrame {
         initGui();
     }
     private void initGui(){
+        setTitle("Dodaj Produkt");
         setVisible(true);
         initComboBoxCategories();
         initComboBoxSuppliers();
