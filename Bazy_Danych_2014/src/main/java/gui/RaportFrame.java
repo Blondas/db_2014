@@ -24,8 +24,6 @@ public class RaportFrame extends javax.swing.JFrame {
     /**
      * Creates new form RaportFrame
      */
-    ArrayList<Categories> categoriesList = new ArrayList();
-    ArrayList<Suppliers> suppliersList = new ArrayList();
 
     public RaportFrame() {
         initComponents();
@@ -58,24 +56,14 @@ public class RaportFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBoxSupplier = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTableRaport.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
                 },
                 new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
-                }
-        ));
-        jScrollPane1.setViewportView(jTableRaport);
-
-        jTableRaport.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-
-                },
-                new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                        "Nazwa produktu", "Cena za sztukę", "Sztuk na stanie", "Przecenione", "Kategoria", "Nazwa firmy"
                 }
         ));
         jScrollPane1.setViewportView(jTableRaport);
@@ -201,23 +189,24 @@ public class RaportFrame extends javax.swing.JFrame {
     private void initComboBoxSuppliers() {
         SupplierDao suppliersDao = new SupplierDao();
         ArrayList<Suppliers> list = suppliersDao.selectSuppliers();
+        
+        jComboBoxSupplier.addItem("----");
 
         for(Suppliers suppliers : list){
             String name = suppliers.getCompanyName();
-
             jComboBoxSupplier.addItem(name);
-            suppliersList.add(suppliers);
         }
     }
 
     private void initComboBoxCategories() {
         CategoriesDao categoriesDao = new CategoriesDao();
         ArrayList<Categories> list = categoriesDao.selectCategories();
+        
+        jComboBoxCategory.addItem("----");
+        
         for(Categories category : list){
             String name = category.getCategoryName();
-
             jComboBoxCategory.addItem(name);
-            categoriesList.add(category);
         }
     }
 
@@ -226,23 +215,23 @@ public class RaportFrame extends javax.swing.JFrame {
         String categoryName ="";
         String supplierName ="";
 
-        if(jComboBoxCategory.getSelectedIndex() != -1){      categoryName = (String) jComboBoxCategory.getSelectedItem(); }
-        else if(jComboBoxSupplier.getSelectedIndex() != -1){ supplierName = (String) jComboBoxSupplier.getSelectedItem(); }
-
-
-
+        if(!jComboBoxCategory.getSelectedItem().equals("----")){ categoryName = (String) jComboBoxCategory.getSelectedItem(); }
+        if(!jComboBoxSupplier.getSelectedItem().equals("----")){ supplierName = (String) jComboBoxSupplier.getSelectedItem(); }
 
         DefaultTableModel model = (DefaultTableModel) jTableRaport.getModel();
 
-        for(int i = 0; i< model.getRowCount(); i++){
-            model.removeRow(i);
+        int rows = model.getRowCount(); 
+        for(int i = rows - 1; i >=0; i--)
+        {
+           model.removeRow(i); 
         }
 
         ReportsDao rDao= new ReportsDao();
-        List<Products> listP = rDao.getProductsReport1(categoryName, supplierName);
-        for (Products p: listP) {
-            model.addRow(new Object[]{p.getProductName(), p.getQuantityPerUnit(), p.getUnitsInStock(),
-                    p.getDiscontinued(), p.getCategory().getCategoryName(), p.getSupplier().getCompanyName()});
+        List<Object[]> listP = rDao.getProductsReport1(categoryName, supplierName);
+        for (Object[] tab: listP) {
+//            model.addRow(new Object[]{p.getProductName(), p.getQuantityPerUnit(), p.getUnitsInStock(),
+//                    p.getDiscontinued(), p.getCategory().getCategoryName(), p.getSupplier().getCompanyName()});
+            model.addRow(new Object[]{tab[0], tab[1], tab[2], tab[3], tab[4], tab[5]});
         }
 
     }

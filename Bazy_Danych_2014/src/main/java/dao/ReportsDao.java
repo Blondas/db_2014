@@ -25,29 +25,58 @@ import java.util.List;
  */
 public class ReportsDao extends GenericQuery {
 
-    public List <Products> getProductsReport1(String categoryName, String supplierName) {
+    public List<Object[]> getProductsReport1(String categoryName, String supplierName) {
 //        String hqlQueryString = "select p.productName, p.quantityPerUnit, p.unitsInStock, p.discontinued, p.category.categoryName, " +
 //                "p.supplier.supplierId from Products p";
 
+        System.out.println(categoryName);
+        System.out.println(supplierName);
+        
+        categoryName = categoryName.replaceAll("'", "''");
+        supplierName = supplierName.replaceAll("'", "''");
+        
+        String where ="";
+        
         Products sampleProduct = new Products();
 
-        if (!categoryName.isEmpty()) {
+        if (!categoryName.equals("")) {
             Categories sampleCategory = new Categories();
             sampleCategory.setCategoryName(categoryName);
             sampleProduct.setCategory(sampleCategory);
+            where +="and categoryName = '"+categoryName+"'";
         }
 
-        if (!supplierName.isEmpty()) {
+        if (!supplierName.equals("")) {
             Suppliers sampleSupplier = new Suppliers();
             sampleSupplier.setCompanyName(supplierName);
             sampleProduct.setSupplier(sampleSupplier);
+            where +="and companyName = '"+supplierName+"'";
         }
 
         beginTransaction();
 
-        Criteria criteria = getSession().createCriteria(Products.class);
-        criteria.add( Example.create(sampleProduct) );
-        List result = criteria.list();
+//        Criteria criteria = getSession().createCriteria(Products.class);
+//        criteria.add( Example.create(sampleProduct) );
+//        List result = criteria.list();
+        
+        String sqlQuery = " select productName "
+                        + "       ,QuantityPerUnit"
+                        + "       ,UnitsInStock"
+                        + "       ,(case when Discontinued=1 then 'yes' else 'no' end) as Discontinued"
+                        + "       ,CategoryName"
+                        + "       ,CompanyName \n" 
+                        + "  from products p\n" 
+                        + "  join categories  c on p.categoryId = c.CategoryID \n" 
+                        + "  join suppliers   s on p.SupplierID = s.SupplierID \n" 
+                        + "  where 1=1 \n" + where;
+
+
+        Query query = getSession().createSQLQuery(sqlQuery);
+        
+        List<Object[]> result = query.list();
+        
+        
+        
 
 //        List projectionCriteria = getSession().createCriteria(ProductShort.class)
 //                .setProjection(Projections.distinct(Projections.projectionList()
