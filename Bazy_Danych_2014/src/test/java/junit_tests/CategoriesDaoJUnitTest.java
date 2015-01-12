@@ -44,12 +44,12 @@ public class CategoriesDaoJUnitTest {
     @Test()
     public void testCategories(){
         testSelect();
-//        testAdd();
-//        testSelect();
+        testAdd();
+        testSelect();
         testUpdate();
-//        testSelect();
-//        testDelete();
-//        testSelect();
+        testSelect();
+        testDelete();
+        testSelect();
     }
 //==============================================================================    
     public void testSelectFromDual(){

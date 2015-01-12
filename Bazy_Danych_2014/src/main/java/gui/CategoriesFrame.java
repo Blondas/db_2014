@@ -7,6 +7,7 @@ package gui;
 
 import dao.CategoriesDao;
 import entity.Categories;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -193,5 +194,8 @@ public class CategoriesFrame extends javax.swing.JFrame {
         
         CategoriesDao cDao = new CategoriesDao();
         cDao.addCategory(category); 
+        
+        JOptionPane.showMessageDialog(null, "Kategoria została dodana.");
+        dispose();
     }
 }

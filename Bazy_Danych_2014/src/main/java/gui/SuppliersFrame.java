@@ -7,6 +7,7 @@ package gui;
 
 import dao.SupplierDao;
 import entity.Suppliers;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -372,5 +373,8 @@ public class SuppliersFrame extends javax.swing.JFrame {
         
         SupplierDao sDao = new SupplierDao();
         sDao.addSupplier(supplier); 
+        
+        JOptionPane.showMessageDialog(null, "Dostawca został dodany.");
+        dispose();
     }
 }
