@@ -8,8 +8,7 @@ package junit_tests;
 import dao.*;
 import dao.ReportsDao;
 import entity.Categories;
-import entity.Products;
-import entity.Suppliers;
+import entity.Orders;
 
 import java.util.*;
 
@@ -18,7 +17,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -133,5 +131,33 @@ for(Object r: rows){
 //            System.out.println("AAAAAAAAAAA ");
 //        }
         System.out.println(report);
+    }
+
+    @Test
+    public void testPerformance() {
+        OrdersDao o = new OrdersDao();
+
+        // preconnect to db:
+        List<Orders> orders = o.getOrders();
+
+
+        Long timestamp1 = (System.currentTimeMillis());
+
+        // count in hql:
+        Long rows_num;
+        rows_num = o.getOrdersNumber();
+        System.out.println(rows_num + " rows");
+
+        Long timestamp2 = (System.currentTimeMillis());
+        System.out.println(timestamp2 - timestamp1 + " [ms]");
+
+        // count rows outside hql:
+        orders = o.getOrders();
+        rows_num = Long.valueOf(orders.size());
+        System.out.println(rows_num + " rows");
+
+        Long timestamp3 = (System.currentTimeMillis());
+        System.out.println(timestamp3 - timestamp2 + " [ms]");
+
     }
 }
