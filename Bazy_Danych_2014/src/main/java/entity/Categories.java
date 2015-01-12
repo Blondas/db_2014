@@ -4,12 +4,12 @@ import java.util.Set;
 
 public class Categories  implements java.io.Serializable {
     private Set<Products> products;
-    
+
      private Integer categoryId;
      private String categoryName;
      private String description;
      private String picture;
-     
+
 
      public Categories() {
      }
@@ -66,8 +66,8 @@ public class Categories  implements java.io.Serializable {
     public String toString() {
         return "Categories{" + "products=" + products + ", categoryId=" + categoryId + ", categoryName=" + categoryName + ", description=" + description + ", picture=" + picture + '}';
     }
-     
-     
+
+
 }
 
 

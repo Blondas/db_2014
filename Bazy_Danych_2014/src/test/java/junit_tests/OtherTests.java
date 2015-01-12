@@ -106,7 +106,7 @@ public class OtherTests {
     @Test
     public void testRaport1() {
         ReportsDao r = new ReportsDao();
-        List<Products> report = r.getProductsReport1("Beverages", "Exotic Liquids");
+        List<Products> report = r.getProductsReport1("dsafsdf", "jhgfd");
 
         System.out.println(report.get(0));
 //        System.out.println(report+"asdfasdfadsfasdfdsf");
@@ -126,6 +126,6 @@ for(Object r: rows){
 //            productsList.add(p);
 //            System.out.println("AAAAAAAAAAA ");
 //        }
-        System.out.println(report);
+        System.out.println(report.size());
     }
 }

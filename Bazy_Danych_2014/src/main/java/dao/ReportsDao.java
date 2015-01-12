@@ -45,9 +45,15 @@ public class ReportsDao extends GenericQuery {
 
         beginTransaction();
 
+        System.out.println(sampleProduct.getCategory().getCategoryName());
+
         Criteria criteria = getSession().createCriteria(Products.class);
         criteria.add( Example.create(sampleProduct) );
         List result = criteria.list();
+
+//        Criteria criteriak = session.createCriteria(Car.class);
+//        criteria.add( Expression.like("brand", "Łada") );
+//        List result = criteria.list();
 
 //        List projectionCriteria = getSession().createCriteria(ProductShort.class)
 //                .setProjection(Projections.distinct(Projections.projectionList()
@@ -56,6 +62,18 @@ public class ReportsDao extends GenericQuery {
 //                .setResultTransformer(Transformers.aliasToBean(ProductShort.class)).list();
 
 //        List result = getSession().createQuery(hqlQueryString).list();
+
+        endTransaction();
+
+        return result;
+    }
+
+    public List <Products> getProductsReport2(String categoryName, String supplierName) {
+        String hqlQueryString = "select p.productName from Products p";
+
+        beginTransaction();
+
+        List result = getSession().createQuery(hqlQueryString).list();
 
         endTransaction();
 

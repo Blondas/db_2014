@@ -234,7 +234,8 @@ public class RaportFrame extends javax.swing.JFrame {
 
         DefaultTableModel model = (DefaultTableModel) jTableRaport.getModel();
 
-        for(int i = 0; i< model.getRowCount(); i++){
+        int rows = model.getRowCount();
+        for(int i = rows - 1; i >=0; i--) {
             model.removeRow(i);
         }
 
