@@ -25,35 +25,58 @@ import java.util.List;
  */
 public class ReportsDao extends GenericQuery {
 
-    public List <Products> getProductsReport1(String categoryName, String supplierName) {
+    public List<Object[]> getProductsReport1(String categoryName, String supplierName) {
 //        String hqlQueryString = "select p.productName, p.quantityPerUnit, p.unitsInStock, p.discontinued, p.category.categoryName, " +
 //                "p.supplier.supplierId from Products p";
 
+        System.out.println(categoryName);
+        System.out.println(supplierName);
+        
+        categoryName = categoryName.replaceAll("'", "''");
+        supplierName = supplierName.replaceAll("'", "''");
+        
+        String where ="";
+        
         Products sampleProduct = new Products();
 
-        if (!categoryName.isEmpty()) {
+        if (!categoryName.equals("")) {
             Categories sampleCategory = new Categories();
             sampleCategory.setCategoryName(categoryName);
             sampleProduct.setCategory(sampleCategory);
+            where +="and categoryName = '"+categoryName+"'";
         }
 
-        if (!supplierName.isEmpty()) {
+        if (!supplierName.equals("")) {
             Suppliers sampleSupplier = new Suppliers();
             sampleSupplier.setCompanyName(supplierName);
             sampleProduct.setSupplier(sampleSupplier);
+            where +="and companyName = '"+supplierName+"'";
         }
 
         beginTransaction();
 
-        System.out.println(sampleProduct.getCategory().getCategoryName());
-
-        Criteria criteria = getSession().createCriteria(Products.class);
-        criteria.add( Example.create(sampleProduct) );
-        List result = criteria.list();
-
-//        Criteria criteriak = session.createCriteria(Car.class);
-//        criteria.add( Expression.like("brand", "Łada") );
+//        Criteria criteria = getSession().createCriteria(Products.class);
+//        criteria.add( Example.create(sampleProduct) );
 //        List result = criteria.list();
+        
+        String sqlQuery = " select productName "
+                        + "       ,QuantityPerUnit"
+                        + "       ,UnitsInStock"
+                        + "       ,(case when Discontinued=1 then 'yes' else 'no' end) as Discontinued"
+                        + "       ,CategoryName"
+                        + "       ,CompanyName \n" 
+                        + "  from products p\n" 
+                        + "  join categories  c on p.categoryId = c.CategoryID \n" 
+                        + "  join suppliers   s on p.SupplierID = s.SupplierID \n" 
+                        + "  where 1=1 \n" + where;
+
+
+        Query query = getSession().createSQLQuery(sqlQuery);
+        
+        List<Object[]> result = query.list();
+        
+        
+        
 
 //        List projectionCriteria = getSession().createCriteria(ProductShort.class)
 //                .setProjection(Projections.distinct(Projections.projectionList()
@@ -62,18 +85,6 @@ public class ReportsDao extends GenericQuery {
 //                .setResultTransformer(Transformers.aliasToBean(ProductShort.class)).list();
 
 //        List result = getSession().createQuery(hqlQueryString).list();
-
-        endTransaction();
-
-        return result;
-    }
-
-    public List <Products> getProductsReport2(String categoryName, String supplierName) {
-        String hqlQueryString = "select p.productName from Products p";
-
-        beginTransaction();
-
-        List result = getSession().createQuery(hqlQueryString).list();
 
         endTransaction();
 

@@ -106,9 +106,15 @@ public class OtherTests {
     @Test
     public void testRaport1() {
         ReportsDao r = new ReportsDao();
-        List<Products> report = r.getProductsReport1("dsafsdf", "jhgfd");
-
-        System.out.println(report.get(0));
+//        List<Products> report = r.getProductsReport1("Beverages", "Exotic Liquids");
+        List<Object[]> report = r.getProductsReport1("Beverages", "");
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(report.size());
+        Object[] tab = new Object[5];
+        tab=  report.get(0);
+        
+        
+        System.out.println(tab[4]);
 //        System.out.println(report+"asdfasdfadsfasdfdsf");
 //        for (ProductShort o : report){
 //            System.out.println("AAAAAAAA"+o.getProductName());
@@ -126,6 +132,6 @@ for(Object r: rows){
 //            productsList.add(p);
 //            System.out.println("AAAAAAAAAAA ");
 //        }
-        System.out.println(report.size());
+        System.out.println(report);
     }
 }

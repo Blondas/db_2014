@@ -361,7 +361,8 @@ public class ProductsFrame extends javax.swing.JFrame {
         ProductsDao productsDao = new ProductsDao();
         productsDao.addProduct(product);
         
-        
+        JOptionPane.showMessageDialog(null, "Produkt został dodany.");
+        dispose();
     }
     
     
